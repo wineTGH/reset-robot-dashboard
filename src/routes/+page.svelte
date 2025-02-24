@@ -37,7 +37,7 @@
                         {#each cart as item, id}
                         <tr>
                             <td>
-                                <input type="hidden" name="item" value={item.id}>
+                                <input type="hidden" name="items" value={item.name}>
                                 <p>{item.name}</p>
                             </td>
                             <td>

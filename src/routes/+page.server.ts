@@ -25,10 +25,6 @@ export const load: PageServerLoad = async (event) => {
                 name: 'Винт'
             },
             {
-                id: 5,
-                name: 'Шлейф'
-            },
-            {
                 id: 6,
                 name: 'Бруски'
             },
@@ -43,7 +39,10 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
     order: async (event) => {
         const form = await event.request.formData();
-        let loaded = true;
+        fetch("http://localhost:8080/run", {
+            method: "POST",
+            body: JSON.stringify({items: form.getAll("items")}) 
+        });
         redirect(302, "/order");
     }
 }

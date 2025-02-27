@@ -39,10 +39,17 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
     order: async (event) => {
         const form = await event.request.formData();
-        fetch("http://localhost:8080/run", {
+        fetch("http://localhost:8000/run", {
             method: "POST",
-            body: JSON.stringify({items: form.getAll("items")}) 
+            body: JSON.stringify({
+                items: form.getAll("items"),
+                boxes: form.get("boxes")
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
+        
         redirect(302, "/order");
     }
 }
